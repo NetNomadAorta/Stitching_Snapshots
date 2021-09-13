@@ -66,7 +66,7 @@ for imagePath in glob.glob(SNAPSHOTS_DIRECTORY + "*"):
         growingImage = image
         rowNum += 1
 
-rowNum += 1
 cv2.imwrite("./Images/Stitched_Images/Stitched_Image-Row_{}.jpg".format(rowNum), growingImage)
+
 
 
