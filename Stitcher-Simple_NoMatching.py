@@ -6,10 +6,9 @@ import glob
 
 
 # User Parameters/Constants to Set
-MATCH_CL = 0.70 # Minimum confidence level (CL) required to match golden-image to scanned image
 SNAPSHOTS_DIRECTORY = "Images/Snapshots/"
 STITCHED_IMAGES_DIRECTORY = "Images/Stitched_Images/"
-COLUMN_LIMIT = 57
+COLUMN_LIMIT = 55
 
 
 def deleteDirContents(dir):
@@ -22,7 +21,7 @@ def deleteDirContents(dir):
 # MAIN():
 # =============================================================================
 # Clears some of the screen for asthetics
-print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+print("\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
 # Deletes contents in Stitched-Images folder
 deleteDirContents("./Images/Stitched_Images/")
@@ -52,7 +51,6 @@ for imagePath in glob.glob(SNAPSHOTS_DIRECTORY + "*"):
 
 
 isFirstTime = 1
-
 # Stitches horizontaly stitched-snapshots vertically and completes
 #   full-wafer stitchin
 print("Starting vertical stitching!")
