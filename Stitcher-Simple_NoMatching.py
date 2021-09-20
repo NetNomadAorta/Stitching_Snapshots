@@ -36,6 +36,7 @@ def fillMissingSnapshot(slotDir):
         if not str(int(dirList[0][-11:-7])+i) in dirList[i]:
             print("Missing file after this one:")
             print(dirList[i-1])
+            print("")
             cv2.imwrite(dirList[0][:-11] + "{}.p0.jpg".format(int(dirList[0][-11:-7])+i), cv2.imread(dirList[i-1]))
             break
 
@@ -128,13 +129,18 @@ for slotDir in glob.glob(mainSnapDir[0] + "/*"):
             bottomImage = cv2.imread(imagePath)
             if ((i-1) % (ROW_LIMIT-1)) == 0:
                 
+                    if round((i-1) / 3) < 10:
+                        rZ = 0
+                    else: 
+                        rZ = ""
+                
                 if i != 1:
                     topImage = np.concatenate((topImage[:-287+10, :], bottomImage[10:,:]) )
                     waferImage = topImage
                     print("Saving Wafer Image", round((i-1) / 3) )
                     cv2.imwrite("./Images/Stitched_Images/Vertical_Stitched_Images/" \
                         + slotDir[17:-3] + "/" + slotDir[-2:] + \
-                        "//Slot_{}-Row_{}.png".format(slotDir[-2:], round((i-1) / 3) ), waferImage)
+                        "//Slot_{}-Row_{}{}.png".format(slotDir[-2:], rZ, round((i-1) / 3) ), waferImage)
                     print("Saved")
                 topImage = bottomImage
                 i += 1
