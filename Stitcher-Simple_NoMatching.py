@@ -11,7 +11,7 @@ import glob
 SNAPSHOTS_DIRECTORY = "Images/Snapshots/"
 STITCHED_IMAGES_DIRECTORY = "Images/Stitched_Images/"
 COLUMN_LIMIT = 55 # Number of snapshots to be used to stitched together horizontally
-ROW_LIMIT = 4 # Number of horizontal stitched-images that can be stitched together vertically
+ROW_LIMIT = 10 # Number of horizontal stitched-images that can be stitched together vertically
 # Note: leave Row_Limit = 0 to stitch full-wafer
 
 def time_convert(sec):
@@ -129,10 +129,10 @@ for slotDir in glob.glob(mainSnapDir[0] + "/*"):
             bottomImage = cv2.imread(imagePath)
             if ((i-1) % (ROW_LIMIT-1)) == 0:
                 
-                    if round((i-1) / 3) < 10:
-                        rZ = 0
-                    else: 
-                        rZ = ""
+                if round((i-1) / 3) < 10:
+                    rZ = 0
+                else: 
+                    rZ = ""
                 
                 if i != 1:
                     topImage = np.concatenate((topImage[:-287+10, :], bottomImage[10:,:]) )
